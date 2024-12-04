@@ -4,6 +4,7 @@
  * @brief Fichier source du buzzer
  *********************************************************************/
 #include "Buzzer.h"
+#include <Arduino.h>
 
 
 Buzzer::Buzzer()
@@ -20,23 +21,23 @@ void Buzzer::init(int p , bool s)
 {
   this->pin=p;
   this->state=s;
- PinMode(pin, OUTPUT);
+ pinMode(pin, OUTPUT);
  if (s) {
-  digitalwrite(pin, HIGH);
+  digitalWrite(pin, HIGH);
  }else {
-  degitalwrite(pin, LOW);
+  digitalWrite(pin, LOW);
  }
  
 }
 void Buzzer::off(void)
 {
-  digitalwrite(pin, LOW);
+  digitalWrite(pin, LOW);
   state =false;
 }
 
 void Buzzer::on(void)
 {
-  digitalwrite(pin, HIGH);
+  digitalWrite(pin, HIGH);
   state =true;
 }
 void Buzzer::toggle(void)
