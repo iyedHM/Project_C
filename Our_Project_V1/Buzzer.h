@@ -1,57 +1,65 @@
 /*********************************************************************
- * @file  Buzzer.h
+ * @file  Buzzer.cpp
  * @author hamrouni iyed hamrouni@insa-toulouse.fr
- * @brief Fichier header du buzzer
+ * @brief Fichier source du buzzer
  *********************************************************************/
-#ifndef BUZZER_H_
-#define BUZZER_H_
+#include "Buzzer.h"
+#include <Arduino.h>
 
-/**
-  * @class Buzzer
-  * @brief Classe Buzzer 
-*/    
-class Buzzer
+
+Buzzer::Buzzer()
 {
-  private : 
-  // Variable
-  int pin ;
-  bool state ; 
-  public :
-    /**
-     * @fn Buzzer();
-     * @brief Constructeur par defaut
-    */    
-    Buzzer();
-    /**
-     * @fn ~Buzzer();
-     * @brief Destructeur
-    */    
-    ~Buzzer();    
-    /**
-     * @fn void init(void)
-     * @brief Fonction d'initialisation du Buzzer
-    */
-    void init(int p,bool s);
-    /**
-     * @fn void on(void)
-     * @brief Fonction de lancement du Buzzer
-    */
-    void on(void);
-    /**
-     * @fn void off(void)
-     * @brief Fonction d'arret du Buzzer
-    */
-    void off(void);
-     /**
-     * @fn void on(void)
-     * @brief Fonction de lancement du Buzzer avec une frequence specifique
-    */
-    void Buzzer::setFrequency(int frequency);
-     /**
-     * @fn void on(void)
-     * @brief Fonction de lancement du Buzzer pour une durée specifique 
-    */
-    void Buzzer::Buzzfor(int duration);
+  this->pin =0;
+  this->state = false ;
+}
+  
+Buzzer::~Buzzer()
+{
+}  
 
-};
-#endif
+void Buzzer::init(int p , bool s)
+{
+  this->pin=p;
+  this->state=s;
+ pinMode(pin, OUTPUT);
+ if (s) {
+  digitalWrite(pin, HIGH);
+ }else {
+  digitalWrite(pin, LOW);
+ }
+ 
+}
+void Buzzer::off(void)
+{
+  digitalWrite(pin, LOW);
+  state =false;
+}
+
+void Buzzer::on(void)
+{
+  digitalWrite(pin, HIGH);
+  state =true;
+}
+void Buzzer::toggle(void)
+{
+   if (this->state) {
+  this->on();
+ }else {
+  this->off();
+ }
+
+}
+void Buzzer::setFrequency(int frequency) {
+    if (frequency > 0) {
+        tone(pin, frequency); 
+        state = true;        
+    } else {
+        off(); 
+    }
+}
+void Buzzer::Buzzfor(int duration){
+  this->on() ;
+  delay(duration);
+  this->off();
+
+}
