@@ -12,9 +12,19 @@
 #include <inttypes.h>
 #include <Wire.h>
 #include "LightSensor.h"
+#include "LCD.h"
 
 
 void LightSensor :: init(int pin){
+  try {
+    if (pin<0){
+      throw 1 ;
+    }
+
+  } catch (int e) {
+    lcd.printMessage("Erreur initLight");
+    lcd.printMessage("Pin negative !",1);
+  }
   pinAnalog = pin ;
 }
 
