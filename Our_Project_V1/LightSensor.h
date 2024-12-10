@@ -1,7 +1,7 @@
 /*********************************************************************
- * @file  LCD.hpp
- * @author <Ducasse Thomas>
- * @brief Fichier source de l'application
+ * @file  LightSensor.h
+ * @author Ducasse Thomas
+ * @brief Gestion du capteur de luminosité
  *********************************************************************/
 #ifndef __LightSensor_H__
 #define __LightSensor_H__
