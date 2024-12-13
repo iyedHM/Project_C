@@ -1,2 +1,2 @@
 # Project_C
-You will find the report [here](path/to/Report.pdf)
+You will find the report [here](./Report.pdf)
